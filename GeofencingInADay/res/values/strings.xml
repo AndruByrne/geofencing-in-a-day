@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GeofencingInADay</string>
+	<string name="removable_geofences">Removable GeoFences</string>
+	<string name="link_to_geofence">Link to Geofence</string>
+	<string name="add_geofence">Add Geofence</string>
+	<string name="you_are_near">You Are Near&#160;</string>
+    <string name="view_link_at">View Link At&#160;</string>
+	<string name="anchor_hash">AnchorHash</string>
+	<string name="settings">Settings</string>
+	<string name="confirm_anchor_delete">Delete this anchor?</string>
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
+	<string name="action_add">Add Geofence</string>
+	<string name="action_settings">Settings</string>
+	<string name="google_url">http://www.google.com</string>
+	<string name="uri_label">Link:&#160;</string>
+	<string name="lat_label">Latitude:&#160;</string>
+	<string name="lng_label">Longitude:&#160;</string>
+	<string name="label_label">Label:&#160;</string>
+	<string name="filter_label">Filter:&#160;</string>
+	<string name="places_label">Places:&#160;</string>
+	<string name="google_api_endpoint">https://maps.googleapis.com</string>
+	<string name="radius">radius</string>
+	<string name="key">key</string>
+	<string name="sensor">sensor</string>
+	<string name="keyword">keyword</string>
+	<string name="location">location</string>
+	<string name="places_api_key">AIzaSyDWUuQj_GS_stpWB0oqf7FzaGiuL6-7UbE</string>
+	<string name="places_api_sensor">true</string>
+	<string name="places_api_radius">50</string>
+	
+	
+</resources>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="top"
+    android:orientation="vertical" >
+	
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:orientation="horizontal" >
+		<TextView
+			android:text="@string/uri_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="20px">
+		</TextView>
+		<EditText
+			android:id="@+id/edit_link"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="left">
+		</EditText>
+	</LinearLayout>	
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:orientation="horizontal" >
+		<ImageButton
+			android:id="@+id/placeQuery"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:src="@android:drawable/ic_menu_search"
+			android:onClick="applyFilter">
+		</ImageButton>
+		<TextView
+			android:text="@string/filter_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="20px">
+		</TextView>
+		<EditText
+			android:id="@+id/edit_filter"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:gravity="left">
+		</EditText>
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:orientation="horizontal" >
+		<TextView
+			android:text="@string/places_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="20px">
+		</TextView>
+		<Spinner
+			android:id="@+id/placesSpinner"
+			android:layout_width="fill_parent"
+		    android:layout_height="wrap_content">
+		</Spinner>		
+	</LinearLayout>	
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:orientation="horizontal" >
+		<TextView
+			android:text="@string/label_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="20px">
+		</TextView>
+		<EditText
+			android:id="@+id/edit_label"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="left">
+		</EditText>
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:orientation="horizontal" >
+		<TextView
+			android:text="@string/lat_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="20px">
+		</TextView>
+		<TextView
+			android:id="@+id/lat_view"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="left">
+		</TextView>
+	</LinearLayout>
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:orientation="horizontal" >
+		<TextView
+			android:text="@string/lng_label"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="20px">
+		</TextView>
+		<TextView
+			android:id="@+id/lng_view"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="left">
+		</TextView>
+	</LinearLayout>
+	<Button
+		android:id="@+id/addGeofence"
+		android:clickable="true"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/add_geofence"
+		android:onClick="addGeofence"/>
+</LinearLayout>
