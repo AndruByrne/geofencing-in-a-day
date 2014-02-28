@@ -1,38 +1,37 @@
 package com.pachakutech.geofencingdemo.structs;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.google.api.client.util.Key;
+import android.location.Address;
+
 public class Place {
+    @Key
+    public String id;
 
-	public String id;
+    @Key
+    public String name;
 
-	public String name;
+    @Key
+    public String reference;
 
-	public String reference;
+    @Key
+    public List<Address> address_components;
 
-	public String icon;
+    @Key
+    public Geometry geometry;
 
-	public String vicinity;
+    @Key
+    public String vicinity;
 
-	public Geometry geometry;
-
-	public String formatted_address;
-
-	public String formatted_phone_number;
-
-	@Override
-	public String toString() {
-		return name + " - " + id + " - " + reference;
-	}
-
-	public static class Geometry 
-	{
-		public Location location;
-	}
-
-	public static class Location 
-	{
-		public double lat;
-
-		public double lng;
-	}
-
+    @Override
+    public String toString() {
+        if(address_components == null ) {
+            return name + "\n" + geometry.toString() + "\n" + vicinity;
+        } else {
+            return name + "\n" + geometry.toString() + "\n" + vicinity + "\n" + address_components.toString();
+        }
+    }
+	
 }

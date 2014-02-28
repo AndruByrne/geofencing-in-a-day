@@ -11,15 +11,15 @@ import com.pachakutech.geofencingdemo.*;
 public class AnchorListAdapter extends ArrayAdapter<String>
 {
 
-	private final Object[] anchorNames;
-	public AnchorListAdapter(Context context, Set set){
-		super(context, R.layout.row, set.toArray());
-		anchorNames = set.toArray();
+	private final List<String> anchorNames;
+	public AnchorListAdapter(Context context, int textviewId, List<String> anchors){
+		super(context, textviewId, anchors);
+		anchorNames = anchors;
 	}
 
 	@Override
 	public String getItem( int i ) {
-		return anchorNames[i].toString();
+		return anchorNames.get(i).toString();
 	}
 
 	

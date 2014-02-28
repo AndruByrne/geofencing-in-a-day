@@ -27,9 +27,11 @@
 	<string name="sensor">sensor</string>
 	<string name="keyword">keyword</string>
 	<string name="location">location</string>
+	<string name="places_api_service">/maps/api/place/nearbysearch/json</string>
 	<string name="places_api_key">AIzaSyDWUuQj_GS_stpWB0oqf7FzaGiuL6-7UbE</string>
 	<string name="places_api_sensor">true</string>
 	<string name="places_api_radius">50</string>
-	
+	<string name="added_geofence">Added Geofence&#160;</string>
+	<string name="adding_geofence">Browse then share your link to a geofence!</string>
 	
 </resources>

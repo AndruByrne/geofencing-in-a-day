@@ -14,9 +14,14 @@ import android.net.Uri;
 import android.location.LocationManager;
 import com.pachakutech.geofencingdemo.utils.*;
 import java.util.HashMap;
+import android.util.Log;
+import com.pachakutech.geofencingdemo.interfaces.*;
+import java.util.List;
+import java.util.ArrayList;
 
-public class AnchorList extends ListActivity
+public class AnchorList extends ListActivity implements RemoveableGeofences
 {
+
     //list of anchors at onClick
 	private ListView listView;
 	//position at onClick
@@ -26,7 +31,9 @@ public class AnchorList extends ListActivity
 	//serialized anchors
 	private SharedPreferences anchorHash;
 	//anchor names and LatLngs
-    private Map<String, String> anchors;
+    private Map<String, String> anchors = new HashMap<String, String>();
+	//list of anchor names
+	ArrayList<String> anchorList = new ArrayList<String>();
 	
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -34,41 +41,49 @@ public class AnchorList extends ListActivity
         super.onCreate(savedInstanceState);
 //		getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);		
 		anchorHash = getSharedPreferences(getString(R.string.anchor_hash), MODE_PRIVATE);
-		anchors = (HashMap<String, String>) anchorHash.getAll();
-		arrayAdapter = new AnchorListAdapter(this, anchors.keySet());
+		arrayAdapter = new AnchorListAdapter(this, android.R.layout.simple_list_item_1, anchorList);
 		setListAdapter(arrayAdapter);
     }
 	
 	@Override
 	public void onResume(){
-		anchors = (Map<String, String>) anchorHash.getAll();
-		arrayAdapter.notifyDataSetChanged();
 		super.onResume();
+		anchors = (HashMap<String, String>) anchorHash.getAll();
+		anchorList.clear();
+		anchorList.addAll(anchors.keySet());
+		arrayAdapter.notifyDataSetChanged();
 	
 	}
 
 	@Override
 	protected void onListItemClick( ListView l, View v, int p, long id ) {
 		super.onListItemClick( l, v, position, id );
-
 		AlertDialog.Builder builder = new AlertDialog.Builder( this );
 		listView = l;
 		position = p;
 		builder.setMessage(R.string.confirm_anchor_delete);
 		builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener(){
 			public void onClick( DialogInterface di, int i ){
-				anchors.remove(listView.getItemAtPosition(position));
-				arrayAdapter.notifyDataSetChanged();
+				AnchorList.this.removeGeofence(listView.getItemAtPosition(position).toString());
 			}
 		} );
 		builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener(){
 				public void onClick( DialogInterface di, int i ){
 				}
 			} );
-		
+		builder.show();
+	}
+	
+	@Override
+	public void removeGeofence( String string ) {
+		anchors.remove(string);
+		anchorList.clear();
+		anchorList.addAll(anchors.keySet());
+		arrayAdapter.notifyDataSetChanged();
 	}
 	
 	public void addAnchor(){
+		Toast.makeText(this, getString( R.string.adding_geofence ), Toast.LENGTH_LONG).show();
 		//toast instruction to share webpage with app
 		startActivity(new Intent(Intent.ACTION_VIEW, 
 		                         Uri.parse(getString(R.string.google_url))));	}
@@ -76,10 +91,11 @@ public class AnchorList extends ListActivity
 	@Override
 	public void onPause(){
 		SharedPreferences.Editor editor = anchorHash.edit();
+		editor.clear();
 		for( String s: anchors.keySet()){
 			editor.putString(s, anchors.get(s));
-			editor.commit();
 		}
+		editor.commit();
 		super.onPause();
 	}
 
