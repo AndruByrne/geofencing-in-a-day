@@ -91,12 +91,12 @@ public class AddAnchor extends Activity implements LocationListener, SpinMaster 
 	@Override
 	protected void onPause( ) {
 		locationManager.removeUpdates( this );
+		locationManager = null;
 		super.onPause( );
 	}
 
 	@Override
 	public void spinnerItemSelected( Place place ) {
-		Toast.makeText( this, "Item " + place.name + " selected", Toast.LENGTH_LONG ).show( );
 		editLabel.setText( place.name );
 		latView.setText( Double.toString( place.geometry.location.lat ) );
 		latView.refreshDrawableState( );
@@ -113,11 +113,11 @@ public class AddAnchor extends Activity implements LocationListener, SpinMaster 
 		locationManager.removeUpdates( this );
 		SharedPreferences.Editor editor = anchorHash.edit( );
 		
-		editor.putString( editLabel.getText().toString().trim().length() == 0 ? 
+		editor.putString( editLabel.getText().toString().trim().length() < 1 ? 
 		                  intent.getStringExtra( Intent.EXTRA_SUBJECT ) : editLabel.getText( ).toString( ), 
 						  Utils.catOnGeofence( latView.getText( ).toString( ), 
 						      lngView.getText( ).toString( ), 
-					          editLink.getText().toString().trim().length()==0 ?
+					          editLink.getText().toString().trim().length()<1 ?
 							  intent.getStringExtra( Intent.EXTRA_TEXT ) : editLink.getText().toString() ) );
 		editor.commit( );
 		Toast.makeText( this, getString( R.string.added_geofence ) + editLabel.getText( ).toString( ), Toast.LENGTH_SHORT ).show( );

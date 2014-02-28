@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">GeofencingInADay</string>
+    <string name="app_name">GeofencingIn48Hrs</string>
 	<string name="removable_geofences">Removable GeoFences</string>
 	<string name="link_to_geofence">Link to Geofence</string>
 	<string name="add_geofence">Add Geofence</string>

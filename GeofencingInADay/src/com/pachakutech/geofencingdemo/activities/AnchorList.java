@@ -18,6 +18,8 @@ import android.util.Log;
 import com.pachakutech.geofencingdemo.interfaces.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Calendar;
+import com.pachakutech.geofencingdemo.broadcastRecievers.*;
 
 public class AnchorList extends ListActivity implements RemoveableGeofences
 {
@@ -52,7 +54,14 @@ public class AnchorList extends ListActivity implements RemoveableGeofences
 		anchorList.clear();
 		anchorList.addAll(anchors.keySet());
 		arrayAdapter.notifyDataSetChanged();
-	
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.SECOND, GeoFencingIn48Hrs.TIME_TO_CHECK_BIG);
+	        
+		
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(), R.string.removable_geofences, new Intent(this, TrippedFenceReciever.class), PendingIntent.FLAG_UPDATE_CURRENT);
+		AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+	    alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+		
 	}
 
 	@Override
